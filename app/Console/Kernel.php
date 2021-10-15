@@ -28,15 +28,15 @@ class Kernel extends ConsoleKernel
         $schedule->command('analyse:words 4')
             ->withoutOverlapping(2880)
             ->runInBackground()
-            ->hourly();
+            ->everyFifteenMinutes();
         $schedule->command('analyse:words 5')
             ->withoutOverlapping(2880)
             ->runInBackground()
-            ->hourly();
+            ->everyFifteenMinutes();
         $schedule->command('domain:available')
             ->withoutOverlapping(2880)
             ->runInBackground()
-            ->hourly();
+            ->everyFifteenMinutes();
     }
 
     /**
