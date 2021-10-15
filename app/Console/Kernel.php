@@ -26,10 +26,10 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('analyse:words')
-            ->withoutOverlapping()
+            ->withoutOverlapping(20160)
             ->hourly();
         $schedule->command('domain:available')
-            ->withoutOverlapping()
+            ->withoutOverlapping(20160)
             ->hourly();
     }
 
