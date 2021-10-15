@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
 
-class LikeWord extends Action
+class LoveWord extends Action
 {
     use InteractsWithQueue, Queueable;
 
@@ -23,7 +23,7 @@ class LikeWord extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
         foreach ($models as $model) {
-            $model->status = 'liked';
+            $model->status = 'loved';
             $model->save();
         }
 
