@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Actions\AcceptWord;
+use App\Nova\Actions\LikeWord;
 use App\Nova\Actions\RefuseWord;
 use App\Nova\Filters\StatusFilter;
 use App\Nova\Filters\WordLengthFilter;
@@ -52,8 +53,9 @@ class Word extends Resource
             Badge::make('Status')->map([
                 'waiting' => 'info',
                 'success' => 'success',
+                'like' => 'success',
                 'failed' => 'danger',
-                'refused' => 'danger',
+                'refused' => 'warning',
             ])->sortable(),
         ];
     }
@@ -105,12 +107,17 @@ class Word extends Resource
         return [
             AcceptWord::make()
                 ->canSee(function () {
-                    return !$this->resource->exists || $this->resource->status === 'refused';
+                    return !$this->resource->exists || $this->resource->status === 'refused' || $this->resource->status === 'liked';
                 })
                 ->showOnTableRow(),
             RefuseWord::make()
                 ->canSee(function () {
-                    return !$this->resource->exists || $this->resource->status === 'success';
+                    return !$this->resource->exists || $this->resource->status === 'success' || $this->resource->status === 'liked';
+                })
+                ->showOnTableRow(),
+            LikeWord::make()
+                ->canSee(function () {
+                    return !$this->resource->exists || $this->resource->status === 'success' || $this->resource->status === 'refused';
                 })
                 ->showOnTableRow(),
         ];
