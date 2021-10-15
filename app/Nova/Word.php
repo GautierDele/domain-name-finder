@@ -53,7 +53,7 @@ class Word extends Resource
             Badge::make('Status')->map([
                 'waiting' => 'info',
                 'success' => 'success',
-                'like' => 'success',
+                'loved' => 'success',
                 'failed' => 'danger',
                 'refused' => 'warning',
             ])->sortable(),
