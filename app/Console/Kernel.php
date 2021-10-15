@@ -26,13 +26,16 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command('analyse:words 4')
-            ->withoutOverlapping(20160)
+            ->withoutOverlapping(2880)
+            ->runInBackground()
             ->everyMinute();
         $schedule->command('analyse:words 5')
-            ->withoutOverlapping(20160)
+            ->withoutOverlapping(2880)
+            ->runInBackground()
             ->everyMinute();
         $schedule->command('domain:available')
-            ->withoutOverlapping(20160)
+            ->withoutOverlapping(2880)
+            ->runInBackground()
             ->everyMinute();
     }
 
