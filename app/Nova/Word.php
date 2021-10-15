@@ -5,6 +5,7 @@ namespace App\Nova;
 use App\Nova\Actions\AcceptWord;
 use App\Nova\Actions\RefuseWord;
 use App\Nova\Filters\StatusFilter;
+use App\Nova\Filters\WordLengthFilter;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Badge;
 use Laravel\Nova\Fields\ID;
@@ -78,6 +79,7 @@ class Word extends Resource
     {
         return [
             StatusFilter::make(),
+            WordLengthFilter::make(),
         ];
     }
 

@@ -13,7 +13,7 @@ class AnalyseWords extends Command
      *
      * @var string
      */
-    protected $signature = 'analyse:words';
+    protected $signature = 'analyse:words {length=5}';
 
     /**
      * The console command description.
@@ -45,7 +45,7 @@ class AnalyseWords extends Command
             $words = Http::withoutVerifying()->asForm()->post('https://feldarkrealms.com/src/words.php', [
                 'lang' => 'English',
                 'words' => 10,
-                'length' => 5,
+                'length' => $this->argument('length'),
             ]);
 
             preg_match_all('/<div class="col-3 mb-3">([a-zA-Z]+)<\/div>/', $words->body(), $matches);
