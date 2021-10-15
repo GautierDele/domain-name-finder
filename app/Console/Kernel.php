@@ -25,6 +25,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('analyse:words')
+            ->withoutOverlapping()
+            ->hourly();
+        $schedule->command('domain:available')
+            ->withoutOverlapping()
+            ->hourly();
     }
 
     /**
