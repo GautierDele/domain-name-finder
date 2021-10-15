@@ -34,7 +34,8 @@ class StatusFilter extends MultiselectFilter
             'Success' => 'success',
             'Failed' => 'failed',
             'Waiting' => 'waiting',
-            'Refused' => 'refused'
+            'Refused' => 'refused',
+            'Liked' => 'liked'
         ];
     }
 }
