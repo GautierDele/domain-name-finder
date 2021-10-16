@@ -37,6 +37,10 @@ class Kernel extends ConsoleKernel
             ->withoutOverlapping(2880)
             ->runInBackground()
             ->everyFifteenMinutes();
+        $schedule->command('rule:apply')
+            ->withoutOverlapping(2880)
+            ->runInBackground()
+            ->everyFifteenMinutes();
     }
 
     /**

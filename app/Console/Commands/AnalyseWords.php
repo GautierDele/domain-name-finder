@@ -41,7 +41,7 @@ class AnalyseWords extends Command
     {
         $tries = 0;
 
-        while ($tries < 1000) {
+        while ($tries < 10) {
             $words = Http::withoutVerifying()->asForm()->post('https://feldarkrealms.com/src/words.php', [
                 'lang' => 'English',
                 'words' => 10,
@@ -51,11 +51,13 @@ class AnalyseWords extends Command
             preg_match_all('/<div class="col-3 mb-3">([a-zA-Z]+)<\/div>/', $words->body(), $matches);
 
             foreach ($matches[1] as $word) {
-                Word::firstOrCreate([
-                    'name' => $word
-                ]);
+                if (Word::where('name', $word)->count() === 0) {
+                    Word::create([
+                        'name' => $word
+                    ]);
 
-                $tries = 0;
+                    $tries = 0;
+                }
             }
 
             $tries++;
